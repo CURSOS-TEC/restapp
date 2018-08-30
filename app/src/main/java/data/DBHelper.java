@@ -88,4 +88,23 @@ public class DBHelper extends SQLiteOpenHelper {
         super.onDowngrade(db, oldVersion, newVersion);
         onUpgrade(db, oldVersion, newVersion);
     }
+
+    public void checkUserCredentials (){}
+    public void addUserCredentials (){}
+
+    public void readMenuItem   () {} // works for best ranking
+    public void createMenuItem () {}
+    public void deleteMenuItem () {}
+    public void updateMenuItem () {} // votes
+
+    public void readMenu   () {}
+    public void createMenu () {}
+    public void deleteMenu () {}
+    public void updateMenu () {}
+
+    public void readRestaurant   () {}
+    public void createRestaurant () {}
+    public void deleteRestaurant () {}
+    public void updateRestaurant () {}
+
 }
