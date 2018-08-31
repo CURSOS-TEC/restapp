@@ -15,7 +15,9 @@ public class MainActivity extends AppCompatActivity {
         DBHelper mDbHelper = new DBHelper(MainActivity.this);
         mDbHelper.addUserCredentials("Juan","Navarro","jnavcamacho@gmail.com","password",1);
         mDbHelper.addUserCredentials("Esteban","Camacho","navarroesteban2009@hotmail.com","password",2);
-
+        mDbHelper.checkUserCredentials("jnavcamacho@gmail.com","password");
+        mDbHelper.checkUserCredentials("jnavcamacho@gmail.com","password1");
+        mDbHelper.checkUserCredentials("navarroesteban2009@hotmail.com","password");
     }
 
 

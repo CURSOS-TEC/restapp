@@ -2,9 +2,14 @@ package data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -135,7 +140,57 @@ public class DBHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    public void checkUserCredentials (){}
+    public long checkUserCredentials ( String pEmail, String pPassword){
+        long result = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        String[] projection = {
+            UserContract.User.COLUMN_NAME_USER_ID,
+            UserContract.User.COLUMN_NAME_USER_NAME,
+            UserContract.User.COLUMN_NAME_USER_LAST,
+            UserContract.User.COLUMN_NAME_USER_EMAIL,
+            UserContract.User.COLUMN_NAME_USER_ID,
+            UserContract.User.COLUMN_NAME_USER_ROLE
+        };
+        // Filter results WHERE "email" = 'email@email.com' and "password" = 'password'
+        String selection = UserContract.User.COLUMN_NAME_USER_EMAIL + " = ? AND " + UserContract.User.COLUMN_NAME_USER_PASSWORD + "  = ?" ;
+        String[] selectionArgs = { pEmail  , pPassword  };
+
+        // How you want the results sorted in the resulting Cursor
+        String sortOrder =
+                UserContract.User.COLUMN_NAME_USER_ID + " DESC";
+
+        try {
+            Cursor cursor = db.query(
+                    UserContract.User.TABLE_NAME,   // The table to query
+                    projection,             // The array of columns to return (pass null to get all)
+                    selection,              // The columns for the WHERE clause
+                    selectionArgs,          // The values for the WHERE clause
+                    null,                   // don't group the rows
+                    null,                   // don't filter by row groups
+                    sortOrder               // The sort order
+            );
+            if(cursor.getCount() > 0){
+                List itemIds = new ArrayList<>();
+                while(cursor.moveToNext()) {
+                    long itemId = cursor.getInt(
+                            cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_NAME_USER_ROLE));
+                    itemIds.add(itemId);
+                }
+                cursor.close();
+
+                Log.i("credentials", String.valueOf(itemIds.get(0)));
+            }else{
+                Log.i("credentials", "-1");
+            }
+
+        }
+        catch (Exception e){
+            Log.i("credentials", e.getMessage());
+        }
+        return result;
+    }
     public long addUserCredentials (String pName,String pLastName, String pEmail, String pPassword, int pId ){
         SQLiteDatabase db = this.getWritableDatabase();
         // Create a new map of values, where column names are the keys
