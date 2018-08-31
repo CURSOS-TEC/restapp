@@ -20,7 +20,11 @@
             android:name=".LogInActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_log_in"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/FullscreenTheme" ></activity>
+
     </application>
 
 </manifest>
