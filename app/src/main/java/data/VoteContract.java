@@ -14,6 +14,6 @@ public class VoteContract {
         public static final String COLUMN_NAME_VOTE_USER_ID = "userId";
         public static final String COLUMN_NAME_VOTE_RESTAURANT_ID = "restaurantId";
         public static final String COLUMN_NAME_VOTE_MENU_ID = "menuId";
-        public static final String COLUMN_NAME_VOTE_MENU_ITEM = "menuItemId";
+        public static final String COLUMN_NAME_VOTE_MENU_ITEM_ID = "menuItemId";
     }
 }

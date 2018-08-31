@@ -11,7 +11,7 @@ public class MenuContract {
     public static class Menu implements BaseColumns {
         public static final String TABLE_NAME = "SoaMenu";
         public static final String COLUMN_NAME_MENU_ID = "id";
-        public static final String COLUMN_NAME_MENU_RESTAURANT= "restaurantId";
+        public static final String COLUMN_NAME_MENU_RESTAURANT_ID= "restaurantId";
         public static final String COLUMN_NAME_MENU_SCHEDULE_TYPE= "scheduleType";
     }
 }
